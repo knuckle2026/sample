@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>目黒BARナポリタン (Ver 2.0.0)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 90年代個人ホームページ風のノスタルジック・デザイン */
+        body {
+            background-color: #FFFF65; 
+            color: #000080; /* 紺色テキスト */
+            font-family: "MS PGothic", "MS Gothic", "Osaka", sans-serif;
+            line-height: 1.5;
+        }
+
+        /* コンテンツ配置用のコンテナ */
+        .content-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* ナビゲーションリンク：濃いオレンジ・太字・下線 */
+        .nav-link-retro {
+            color: #FF4500; 
+            font-weight: bold;
+            text-decoration: underline;
+            font-size: 18px;
+            margin: 0 15px;
+            white-space: nowrap;
+        }
+        .nav-link-retro:hover {
+            color: #FF0000;
+            background-color: #FFFFFF;
+        }
+
+        /* リンク集専用のテキストリンク */
+        .link-item {
+            color: #0000FF;
+            text-decoration: underline;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .link-item:hover {
+            color: #FF0000;
+            background-color: #FFFFFF;
+        }
+
+        /* セクション見出し：グラデーションバー */
+        .section-header {
+            background: linear-gradient(to right, #000080, #8080FF);
+            color: #FFFFFF;
+            padding: 8px 15px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            font-size: 20px;
+            border-left: 10px solid #FF0000;
+            box-shadow: 2px 2px 0px #333;
+        }
+
+        /* ページトップへ戻るリンク */
+        .back-to-top {
+            display: block;
+            text-align: right;
+            font-size: 13px;
+            color: #0000FF;
+            text-decoration: underline;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        /* アクセスカウンター風 */
+        .counter {
+            background-color: #000000;
+            color: #00FF00;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 2px 10px;
+            border: 2px solid #777777;
+            letter-spacing: 3px;
+            font-size: 20px;
+            min-width: 100px;
+            display: inline-block;
+        }
+
+        /* CGIフォーム用の入力スタイル */
+        .cgi-input {
+            border: 2px inset #eee;
+            background-color: #fff;
+            color: #000;
+            padding: 2px 4px;
+            font-family: inherit;
+        }
+
+        /* フォームボタン（送信・リセット） */
+        .form-btn {
+            border: 2px outset #eee;
+            background: #ccc;
+            color: #000;
+            padding: 2px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .form-btn:active {
+            border: 2px inset #eee;
+        }
+
+        .recommend-box {
+            border: 2px dashed #FF4500;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.5);
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px dashed #000080;
+            margin: 40px 0;
+        }
+
+        /* タイトル内のロゴ画像調整 */
+        .title-logo {
+            display: inline-block;
+            vertical-align: middle;
+            height: 1em;
+            margin: 0 10px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <!-- ページ最上部へのアンカー -->
+    <div id="top"></div>
+
+    <div class="content-wrapper">
+        
+        <!-- ヘッダータイトル -->
+        <header class="text-center mb-12">
+            <h1 class="text-3xl md:text-5xl font-black italic tracking-tighter mb-4 text-[#E64A19] flex items-center justify-center flex-wrap" style="text-shadow: 2px 2px #AAA;">
+                <span>目黒BAR</span> <img src="images/logo.jpg" alt="Logo" class="title-logo h-[1.2em] md:h-[1.2em]" onerror="this.style.display='none'; this.after('[LOGO]');">
+                <span>ナポリタン</span>
+            </h1>
+            
+            <div class="mb-8 text-center">
+                <div class="mt-4 mb-6">
+                    <img src="images/main.jpg" alt="Main View" class="mx-auto border-2 border-navy shadow-lg max-w-full h-auto md:max-w-xl" onerror="this.style.display='none'; this.after('[IMAGE: main.jpg]');">
+                </div>
+                <!-- アクセスカウンター -->
+                <p class="mt-4 text-xs md:text-sm font-bold">
+                    あなたは <span class="counter" id="visitor-counter">------</span> 人目の訪問者です
+                </p>
+                <!-- キリ番特典 -->
+                <p class="text-xs md:text-sm font-bold text-red-600 mt-1">
+                    ★キリ番ゲットで1杯サービス！★
+                </p>
+            </div>
+
+            <!-- 最新情報リンク -->
+            <div class="mb-4 flex justify-center items-center">
+                <a href="https://www.instagram.com/" target="_blank" class="flex items-center gap-2 hover:opacity-70 transition-opacity group" title="Instagramで最新情報をチェック">
+                    <span class="text-sm md:text-base font-bold text-[#E64A19] italic group-hover:underline">最新情報はこちら</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#E64A19" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
+            </div>
+            
+            <!-- ナビゲーションメニュー -->
+            <nav class="flex flex-wrap justify-center border-t-4 border-b-4 border-navy py-6">
+                <a href="#intro" class="nav-link-retro">お店紹介</a>
+                <a href="#price" class="nav-link-retro">料金ｼｽﾃﾑ</a>
+                <a href="#access" class="nav-link-retro">ｱｸｾｽ・営業時間</a>
+                <a href="#links" class="nav-link-retro">ﾘﾝｸ集</a>
+                <a href="#contact" class="nav-link-retro">お問合せ</a>
+            </nav>
+        </header>
+
+        <!-- メインコンテンツ -->
+        <div class="space-y-24">
+            <!-- お店紹介 -->
+            <section id="intro">
+                <div class="section-header">お店紹介</div>
+                <div class="md:flex gap-8 items-start">
+                    <div class="w-full md:w-1/2">
+                        <img src="images/tennai.jpg" alt="店内写真" class="w-full border-4 border-double border-navy mb-4 shadow-lg" onerror="this.style.display='none'; this.after('[IMAGE: tennai.jpg]');">
+                        <p class="text-[10px] text-center font-bold italic">※落ち着いた店内の様子</p>
+                    </div>
+                    <div class="md:w-1/2">
+                        <p class="text-base md:text-lg leading-loose font-bold">
+                            カウンター8席とボックス席の落ち着いた空間です。<br>
+                            LGBTQの方はもちろん, ストレートの方にも楽しんでいただけるセクシャリティーフリーバー。<br>
+                            カラオケもございます。
+                        </p>
+                    </div>
+                </div>
+                <a href="#top" class="back-to-top">▲ ページトップへ戻る</a>
+            </section>
+
+            <!-- 料金システム -->
+            <section id="price">
+                <div class="section-header">料金ｼｽﾃﾑ</div>
+                <div class="md:flex gap-8 items-start">
+                    <div class="w-full md:w-1/2">
+                        <img src="images/price.jpg" alt="料金表イメージ" class="w-full border-4 border-double border-navy mb-4 shadow-lg" onerror="this.style.display='none'; this.after('[IMAGE: price.jpg]');">
+                    </div>
+                    <div class="md:w-1/2 space-y-4">
+                        <div class="bg-white/30 p-4 border border-navy shadow-sm">
+                            <p class="text-red-600 font-bold text-lg mb-2">選べる2つの飲み方</p>
+                            <ul class="text-sm space-y-3 leading-relaxed">
+                                <li>
+                                    <span class="font-bold underline">●ボトルセット</span><br>
+                                    ボトルをキープして安く飲める、常連様やグループに最適なプランです。
+                                </li>
+                                <li>
+                                    <span class="font-bold underline">●ショットチャージ</span><br>
+                                    1杯から気軽に楽しめる、初心者の方や色々なお酒を試したい方向け。
+                                </li>
+                            </ul>
+                            
+                            <hr class="my-4 border-navy/30">
+                            
+                            <p class="font-bold text-sm mb-2">【基本料金】</p>
+                            <table class="w-full text-sm border border-navy">
+                                <tbody class="bg-white/20">
+                                    <tr class="border-b border-navy">
+                                        <td class="py-2 px-3">チャージ (最初の2時間)</td>
+                                        <td class="py-2 px-3 text-right font-bold">1,500円</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-2 px-3">延長料金 (1時間毎)</td>
+                                        <td class="py-2 px-3 text-right font-bold">500円</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p class="text-[10px] mt-2 text-right">※表示価格はすべて税込みです。</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="#top" class="back-to-top">▲ ページトップへ戻る</a>
+            </section>
+
+            <!-- アクセス・営業時間 -->
+            <section id="access">
+                <div class="section-header">ｱｸｾｽ・営業時間</div>
+                <div class="p-6 md:p-10 border-2 border-dashed border-navy font-bold leading-loose text-center md:text-left">
+                    <p class="text-lg md:text-xl">
+                        住所：東京都目黒区下目黒1-5-20 コム・トーヨービル 2F
+                    </p>
+                    <p class="text-base md:text-lg mt-4">
+                        目黒駅西口から徒歩4分
+                    </p>
+                    <p class="text-base md:text-lg mt-4">
+                        営業時間：21:00 〜 4:00 ／ 定休日：日曜日
+                    </p>
+                </div>
+                <a href="#top" class="back-to-top">▲ ページトップへ戻る</a>
+            </section>
+
+            <hr>
+
+            <!-- リンク集 -->
+            <section id="links">
+                <div class="section-header">ﾘﾝｸ集</div>
+                <div class="bg-white/20 p-8 border border-dotted border-navy">
+                    <div class="md:flex justify-between items-start">
+                        <ul class="space-y-4 list-none p-0">
+                            <li><a href="https://www.google.co.jp" target="_blank" rel="noopener noreferrer" class="link-item">・Google</a></li>
+                            <li><a href="https://www.yahoo.co.jp" target="_blank" rel="noopener noreferrer" class="link-item">・Yahoo! JAPAN</a></li>
+                            <li><a href="#" class="link-item">・Meguro-Town.net (地域密着型リンク)</a></li>
+                            <li><a href="#" class="link-item">・昭和レトロ同盟 (会員NO.123)</a></li>
+                            <li><a href="#" class="link-item">・BAR検索エンジン「夜の目黒」</a></li>
+                        </ul>
+                        <div class="mt-8 md:mt-0 md:ml-8 p-4 border-2 border-red-600 text-red-600 font-bold text-center bg-white/50">
+                            <p class="mb-2">当サイトはリンクフリーです</p>
+                            <p class="text-xl">相互リンク募集中！！</p>
+                            <p class="text-[10px] mt-2">（お問合せフォームからご連絡ください）</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="#top" class="back-to-top">▲ ページトップへ戻る</a>
+            </section>
+
+            <!-- お問合せ -->
+            <section id="contact">
+                <div class="section-header">お問合せ</div>
+                <div class="bg-white/30 border-4 border-double border-navy p-6 md:p-10">
+                    <p class="mb-6 text-sm font-bold text-center">お問合せは以下のフォームより送信してください。</p>
+                    
+                    <form action="mailto:nakashima3567@gmail.com" method="POST" enctype="text/plain" class="max-w-md mx-auto space-y-4 text-sm">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                            <label class="font-bold">お名前：</label>
+                            <input type="text" name="name" class="md:col-span-2 cgi-input w-full" placeholder="例：目黒 太郎">
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                            <label class="font-bold">E-Mail：</label>
+                            <input type="email" name="email" class="md:col-span-2 cgi-input w-full" placeholder="example@mail.jp">
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                            <label class="font-bold">件名：</label>
+                            <input type="text" name="subject" class="md:col-span-2 cgi-input w-full" value="">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-bold block">メッセージ：</label>
+                            <textarea name="message" rows="5" class="cgi-input w-full" placeholder="ご自由に入力してください"></textarea>
+                        </div>
+                        <div class="text-center pt-4 space-x-4">
+                            <input type="submit" value=" 送信ボタン " class="form-btn">
+                            <input type="reset" value=" リセット " class="form-btn">
+                        </div>
+                    </form>
+                </div>
+                <a href="#top" class="back-to-top">▲ ページトップへ戻る</a>
+            </section>
+        </div>
+
+        <!-- フッター -->
+        <footer class="mt-20 border-t-2 border-navy pt-10 text-center text-[11px] space-y-6 pb-10">
+            <p class="font-bold italic text-gray-400">
+                Copyright (C) 2026 BAR Napolitan All Rights Reserved. (Ver 2.0.0)
+            </p>
+            <p class="text-gray-500 font-bold uppercase tracking-widest">--- End of Page ---</p>
+        </footer>
+    </div>
+
+    <!-- 懐かしの浮遊装飾 -->
+    <div class="fixed bottom-10 right-10 text-6xl opacity-30 hidden md:block">🍝</div>
+
+    <!-- Firebase SDK & Counter Logic -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        const firebaseConfig = JSON.parse(__firebase_config);
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'bar-napolitan';
+
+        const counterEl = document.getElementById('visitor-counter');
+
+        async function initCounter() {
+            try {
+                await signInAnonymously(auth);
+                onAuthStateChanged(auth, async (user) => {
+                    if (user) {
+                        const counterDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'visitor_stats', 'global_counter');
+                        try {
+                            const docSnap = await getDoc(counterDocRef);
+                            if (!docSnap.exists()) {
+                                await setDoc(counterDocRef, { count: 128 });
+                            } else {
+                                await updateDoc(counterDocRef, { count: increment(1) });
+                            }
+                            const updatedSnap = await getDoc(counterDocRef);
+                            const count = updatedSnap.data().count;
+                            counterEl.textContent = String(count).padStart(6, '0');
+                        } catch (e) {
+                            counterEl.textContent = "Error";
+                        }
+                    }
+                });
+            } catch (error) {
+                counterEl.textContent = "Offline";
+            }
+        }
+        window.onload = initCounter;
+    </script>
+</body>
+</html>
