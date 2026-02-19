@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>目黒BARナポリタン (Ver 2.11.0)</title>
+    <title>目黒BARナポリタン (Ver 2.15.0)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- microCMS SDK -->
     <script src="https://unpkg.com/microcms-js-sdk@latest/dist/umd/microcms-js-sdk.js"></script>
@@ -179,7 +179,6 @@
             width: 100%;
         }
         .news-entry {
-            /* 25px(元の位置) + 約75px(約2cm) = 100px に調整 */
             padding: 2px 100px; 
             margin-bottom: 2px;
             font-size: 14px;
@@ -266,36 +265,24 @@
             <section id="price">
                 <div class="section-header">料金ｼｽﾃﾑ</div>
                 <div class="md:flex gap-8 items-start">
+                    <!-- 料金表画像を復元 -->
                     <div class="w-full md:w-1/2">
                         <img src="images/price.jpg" alt="料金表イメージ" class="w-full border-4 border-double border-navy mb-4 shadow-lg" onerror="this.style.display='none'; this.after('[IMAGE: price.jpg]');">
-                        <div class="mt-4">
-                            <table class="retro-table text-sm">
-                                <thead>
-                                    <tr><th>Champagne Menu</th><th>Price</th></tr>
-                                </thead>
-                                <tbody>
-                                    <tr><td>アルマンド ゴールド</td><td>¥140,000 <small>+tax</small></td></tr>
-                                    <tr><td>クリュッグ</td><td>¥120,000 <small>+tax</small></td></tr>
-                                    <tr><td>ペル エポック</td><td>¥80,000 <small>+tax</small></td></tr>
-                                    <tr><td>ヴーヴ ロゼ</td><td>¥24,000 <small>+tax</small></td></tr>
-                                    <tr><td>ヴーヴ イエロー</td><td>¥22,000 <small>+tax</small></td></tr>
-                                </tbody>
-                            </table>
-                        </div>
                     </div>
                     <div class="md:w-1/2 space-y-4">
-                        <div class="bg-white/30 p-4 border border-navy shadow-sm font-bold">
-                            <p class="text-red-600 text-lg mb-2 underline">選べる2つの飲み方</p>
-                            <ul class="text-sm space-y-3 text-navy">
+                        <div class="bg-white/30 p-6 border border-navy shadow-sm font-bold">
+                            <p class="text-red-600 text-lg mb-4 underline">選べる2つの飲み方</p>
+                            <ul class="text-sm space-y-3 text-navy mb-6">
                                 <li>●ボトルセット：常連様向けのお得なキーププラン</li>
                                 <li>●ショットチャージ：1杯から気軽に楽しめるプラン</li>
                             </ul>
-                            <hr class="my-4 border-navy/30">
+                            <hr class="my-6 border-navy/30">
                             <p class="text-sm mb-2 text-navy">【基本料金】</p>
                             <table class="w-full text-sm border border-navy bg-white/20 text-navy">
-                                <tr><td class="p-2 border border-navy">チャージ (2時間)</td><td class="p-2 border border-navy text-right">1,500円</td></tr>
-                                <tr><td class="p-2 border border-navy">延長 (1時間毎)</td><td class="p-2 border border-navy text-right">500円</td></tr>
+                                <tr><td class="p-3 border border-navy">チャージ (2時間)</td><td class="p-3 border border-navy text-right">1,500円</td></tr>
+                                <tr><td class="p-3 border border-navy">延長 (1時間毎)</td><td class="p-3 border border-navy text-right">500円</td></tr>
                             </table>
+                            <p class="text-[10px] mt-2 text-right text-navy italic">※表示価格はすべて税込みです。</p>
                         </div>
                     </div>
                 </div>
@@ -320,8 +307,9 @@
                 <div class="section-header">ﾘﾝｸ集</div>
                 <div class="bg-white/20 p-8 border border-dotted border-navy md:flex justify-between items-start">
                     <ul class="space-y-4 list-none p-0">
-                        <li><a href="https://www.google.co.jp" class="link-item">・Google</a></li>
-                        <li><a href="https://www.yahoo.co.jp" class="link-item">・Yahoo! JAPAN</a></li>
+                        <li><a href="https://www.google.co.jp" target="_blank" rel="noopener noreferrer" class="link-item">・Google</a></li>
+                        <li><a href="https://877uranai.pages.dev/" target="_blank" rel="noopener noreferrer" class="link-item">・開運バナナ占い</a></li>
+                        <li><a href="https://www.yahoo.co.jp" target="_blank" rel="noopener noreferrer" class="link-item">・Yahoo! JAPAN</a></li>
                         <li><a href="#" class="link-item">・昭和レトロ同盟 (会員NO.123)</a></li>
                     </ul>
                     <div class="mt-8 md:mt-0 p-4 border-2 border-red-600 text-red-600 font-bold text-center bg-white/50">
@@ -366,7 +354,7 @@
         </div>
 
         <footer class="mt-20 border-t-2 border-navy pt-10 text-center text-[11px] pb-10">
-            <p class="font-bold italic text-gray-400 font-sans">Copyright (C) 2026 BAR Napolitan All Rights Reserved. (Ver 2.11.0)</p>
+            <p class="font-bold italic text-gray-400 font-sans">Copyright (C) 2026 BAR Napolitan All Rights Reserved. (Ver 2.15.0)</p>
         </footer>
     </div>
 
@@ -408,7 +396,7 @@
                 container.innerHTML = res.contents.map(item => `
                     <div class="news-entry">
                         <span class="news-date">[${new Date(item.publishedAt).toLocaleDateString()}]</span>
-                        <a href="javascript:void(0)" class="link-item news-link" data-id="${item.id}">${item.title}</a>
+                        <a href="javascript:void(0)" class="link-item ml-2 news-link" data-id="${item.id}">${item.title}</a>
                     </div>
                 `).join('');
 
