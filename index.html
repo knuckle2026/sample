@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>目黒BARナポリタン (Ver 2.18.1)</title>
+    <title>目黒BARナポリタン (Ver 2.19.6)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- microCMS SDK -->
     <script src="https://unpkg.com/microcms-js-sdk@latest/dist/umd/microcms-js-sdk.js"></script>
@@ -96,7 +96,7 @@
             min-width: 120px;
         }
 
-        /* モーダル（Win95風） */
+        /* ニュース詳細モーダル（角丸モダンデザイン） */
         #news-modal {
             display: none;
             position: fixed;
@@ -104,26 +104,38 @@
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 1000;
-            background: #C0C0C0;
-            border: 2px outset #FFF;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            background: #FFFFFF;
+            border: 3px solid #000080;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
             width: 90%;
             max-width: 500px;
+            overflow: hidden;
         }
         .modal-title-bar {
-            background: linear-gradient(to right, #000080, #1084D0);
-            color: #FFF;
-            padding: 3px 10px;
-            font-weight: bold;
+            background: #FFFFFF;
+            padding: 15px 20px 5px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
+        }
+        .modal-title-bar button {
+            background: transparent;
+            border: none;
+            color: #999;
+            font-size: 28px;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0;
+            transition: color 0.2s;
+            margin-top: -5px;
+        }
+        .modal-title-bar button:hover {
+            color: #FF4500;
         }
         .modal-body {
-            padding: 20px;
+            padding: 0 20px 20px;
             background: #FFF;
-            margin: 5px;
-            border: 2px inset #FFF;
             max-height: 400px;
             overflow-y: auto;
         }
@@ -206,7 +218,7 @@
                 <span>ナポリタン</span>
             </h1>
             
-            <div class="mb-8 text-center border-b-4 border-navy pb-8">
+            <div class="mb-8 text-center pb-4">
                 <div class="mt-4 mb-6">
                     <img src="images/main.jpg" alt="Main View" class="mx-auto border-2 border-navy shadow-lg max-w-full h-auto md:max-w-xl" onerror="this.style.display='none'; this.after('[IMAGE: main.jpg]');">
                 </div>
@@ -305,8 +317,7 @@
                         <li><a href="https://www.yahoo.co.jp" target="_blank" rel="noopener noreferrer" class="link-item">・Yahoo! JAPAN</a></li>
                         <li><a href="#" class="link-item">・昭和レトロ同盟 (会員NO.123)</a></li>
                     </ul>
-                    <div class="mt-8 md:mt-0 p-4 border-2 border-red-600 text-red-600 font-bold text-center bg-white/50">
-                        <p>当サイトはリンクフリーです！</p>
+                    <div class="mt-8 md:mt-0 p-4 border-2 border-red-600 text-red-600 font-bold text-center bg-white/50 flex items-center justify-center">
                         <p class="text-xl">相互リンク募集中！！</p>
                     </div>
                 </div>
@@ -347,22 +358,19 @@
         </div>
 
         <footer class="mt-20 border-t-2 border-navy pt-10 text-center text-[11px] pb-10">
-            <p class="font-bold italic text-gray-400 font-sans">Copyright (C) 2026 BAR Napolitan All Rights Reserved. (Ver 2.18.1)</p>
+            <p class="font-bold italic text-gray-400 font-sans">Copyright (C) 2026 BAR Napolitan All Rights Reserved. (Ver 2.19.6)</p>
         </footer>
     </div>
 
     <!-- ニュース詳細モーダル -->
     <div id="news-modal" style="display: none;">
         <div class="modal-title-bar">
-            <span id="modal-title-text">お知らせの詳細</span>
-            <button onclick="closeModal()" style="border:1px solid #FFF; padding:0 5px; background:#C0C0C0; color:#000; cursor:pointer; font-size: 10px;">×</button>
+            <div id="modal-date" class="inline-block bg-red-100 text-red-600 text-sm font-bold px-3 py-1 rounded tracking-widest"></div>
+            <button onclick="closeModal()">×</button>
         </div>
         <div class="modal-body">
-            <div id="modal-date" style="font-size:11px; color:#888; margin-bottom:10px; border-bottom:1px solid #CCC; padding-bottom:5px;"></div>
+            <div id="modal-title-text" class="text-xl font-bold text-navy mb-4 border-b-2 border-navy pb-2"></div>
             <div id="modal-content" class="text-sm text-navy leading-relaxed"></div>
-        </div>
-        <div style="text-align:center; padding-bottom:10px;">
-            <button onclick="closeModal()" class="form-btn"> 閉じる </button>
         </div>
     </div>
 
@@ -440,7 +448,7 @@
 
         window.openModal = (item) => {
             document.getElementById('modal-title-text').innerText = item.title;
-            document.getElementById('modal-date').innerText = '配信日時：' + new Date(item.publishedAt).toLocaleString();
+            document.getElementById('modal-date').innerText = new Date(item.publishedAt).toLocaleDateString();
             document.getElementById('modal-content').innerHTML = item.contents || '';
             document.getElementById('news-modal').style.display = 'block';
         };
