@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>目黒BARナポリタン (Ver 2.15.0)</title>
+    <title>目黒BARナポリタン (Ver 2.18.0)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- microCMS SDK -->
     <script src="https://unpkg.com/microcms-js-sdk@latest/dist/umd/microcms-js-sdk.js"></script>
+    <!-- デジタル数字風フォントの読み込み -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <style>
         /* 90年代個人ホームページ風のノスタルジック・デザイン */
         body {
@@ -23,7 +25,7 @@
             padding: 20px;
         }
 
-        /* ナビゲーションリンク：濃いオレンジ・太字・下線 */
+        /* ナビゲーションリンク */
         .nav-link-retro {
             color: #FF4500; 
             font-weight: bold;
@@ -49,7 +51,7 @@
             background-color: #FFFFFF;
         }
 
-        /* セクション見出し：グラデーションバー */
+        /* セクション見出し */
         .section-header {
             background: linear-gradient(to right, #000080, #8080FF);
             color: #FFFFFF;
@@ -72,27 +74,26 @@
             font-weight: bold;
         }
 
-        /* FC2カウンター調整用 */
-        .fc2-counter-area {
+        /* アクセスカウンター（電卓・デジタル風デザイン） */
+        .counter-container {
+            background-color: #222;
+            padding: 5px;
+            border: 3px inset #888;
             display: inline-block;
-            vertical-align: middle;
-            line-height: 1;
-            margin: 0 5px;
+            margin: 0 10px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
         }
-
-        /* テーブルスタイル */
-        .retro-table {
-            border: 4px double #000080;
-            background-color: #FFFFFF;
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .retro-table th, .retro-table td {
-            border: 1px solid #000080;
-            padding: 5px 10px;
-        }
-        .retro-table th {
-            background-color: #E0E0FF;
+        .counter {
+            background-color: #000;
+            color: #00FF00;
+            font-family: 'Orbitron', 'Courier New', Courier, monospace;
+            padding: 4px 12px;
+            border: 1px solid #333;
+            letter-spacing: 2px;
+            font-size: 22px;
+            text-shadow: 0 0 8px rgba(0, 255, 0, 0.8); /* 発光エフェクト */
+            display: inline-block;
+            min-width: 120px;
         }
 
         /* モーダル（Win95風） */
@@ -127,24 +128,18 @@
             overflow-y: auto;
         }
 
-        /* CGIフォーム用の入力スタイル */
+        /* フォーム部品 */
         .cgi-input {
             border: 2px inset #eee;
             background-color: #fff;
-            color: #000;
             padding: 2px 4px;
-            font-family: inherit;
         }
-
-        /* フォームボタン */
         .form-btn {
             border: 2px outset #eee;
             background: #ccc;
-            color: #000;
             padding: 2px 15px;
-            font-size: 14px;
-            cursor: pointer;
             font-weight: bold;
+            cursor: pointer;
         }
 
         hr {
@@ -153,7 +148,7 @@
             margin: 40px 0;
         }
 
-        /* タイトル内のロゴ画像調整 */
+        /* ロゴ画像調整 */
         .title-logo {
             display: inline-block;
             vertical-align: middle;
@@ -172,7 +167,7 @@
             margin-top: 20px;
         }
 
-        /* お知らせ注入用エリア */
+        /* お知らせ注入エリア */
         #news-injected {
             margin: 15px 0 0;
             text-align: left;
@@ -186,7 +181,6 @@
             display: flex;
             align-items: flex-start;
         }
-        /* スマホ時は中央寄りすぎると見切れるため調整 */
         @media (max-width: 640px) {
             .news-entry {
                 padding: 2px 25px;
@@ -194,7 +188,7 @@
         }
         .news-date {
             color: #666;
-            min-width: 95px; /* 日付部分の幅を固定してタイトルの左端を揃える */
+            min-width: 95px;
             display: inline-block;
         }
     </style>
@@ -216,19 +210,19 @@
                 <div class="mt-4 mb-6">
                     <img src="images/main.jpg" alt="Main View" class="mx-auto border-2 border-navy shadow-lg max-w-full h-auto md:max-w-xl" onerror="this.style.display='none'; this.after('[IMAGE: main.jpg]');">
                 </div>
-                <!-- アクセスカウンター (FC2統合) -->
+                <!-- アクセスカウンター -->
                 <p class="mt-4 text-xs md:text-sm font-bold flex items-center justify-center flex-wrap">
-                    あなたは <span class="fc2-counter-area">
-                        <!-- FC2カウンター ここから -->
-                        <script language="javascript" type="text/javascript" src="//counter1.fc2.com/counter.php?id=89514947"></script><noscript><img src="//counter1.fc2.com/counter_img.php?id=89514947" /></noscript>
-                        <!-- FC2カウンター ここまで -->
-                    </span> 人目の訪問者です
+                    あなたは 
+                    <span class="counter-container">
+                        <span class="counter" id="visitor-counter">000000</span>
+                    </span>
+                    人目の訪問者です
                 </p>
                 <p class="text-xs md:text-sm font-bold text-red-600 mt-1">
                     ★キリ番ゲットで1杯サービス！★
                 </p>
 
-                <!-- お知らせ注入エリア (キリ番特典の下) -->
+                <!-- お知らせ注入エリア -->
                 <div id="news-injected"></div>
             </div>
             
@@ -265,7 +259,6 @@
             <section id="price">
                 <div class="section-header">料金ｼｽﾃﾑ</div>
                 <div class="md:flex gap-8 items-start">
-                    <!-- 料金表画像を復元 -->
                     <div class="w-full md:w-1/2">
                         <img src="images/price.jpg" alt="料金表イメージ" class="w-full border-4 border-double border-navy mb-4 shadow-lg" onerror="this.style.display='none'; this.after('[IMAGE: price.jpg]');">
                     </div>
@@ -354,15 +347,15 @@
         </div>
 
         <footer class="mt-20 border-t-2 border-navy pt-10 text-center text-[11px] pb-10">
-            <p class="font-bold italic text-gray-400 font-sans">Copyright (C) 2026 BAR Napolitan All Rights Reserved. (Ver 2.15.0)</p>
+            <p class="font-bold italic text-gray-400 font-sans">Copyright (C) 2026 BAR Napolitan All Rights Reserved. (Ver 2.18.0)</p>
         </footer>
     </div>
 
-    <!-- ニュース詳細モーダル (Windows 95風) -->
+    <!-- ニュース詳細モーダル -->
     <div id="news-modal" style="display: none;">
         <div class="modal-title-bar">
-            <span id="modal-title-text">お知らせの詳細</span>
-            <button onclick="closeModal()" style="border:1px solid #FFF; padding:0 5px; background:#C0C0C0; color:#000; cursor:pointer; font-size: 10px; line-height: 1;">×</button>
+            <span>お知らせの詳細</span>
+            <button onclick="closeModal()" style="border:1px solid #FFF; padding:0 5px; background:#C0C0C0; color:#000; cursor:pointer; font-size: 10px;">×</button>
         </div>
         <div class="modal-body">
             <div id="modal-date" style="font-size:11px; color:#888; margin-bottom:10px; border-bottom:1px solid #CCC; padding-bottom:5px;"></div>
@@ -374,33 +367,66 @@
     </div>
 
     <script type="module">
-        // microCMS 接続設定
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // あなたのFirebase設定
+        const firebaseConfig = {
+            apiKey: "AIzaSyCw7OHxsf0bOikZhn4PGqMfYsi2wzD0IWY",
+            authDomain: "k796-1f1ec.firebaseapp.com",
+            projectId: "k796-1f1ec",
+            storageBucket: "k796-1f1ec.firebasestorage.app",
+            messagingSenderId: "360237524696",
+            appId: "1:360237524696:web:f456c29f81b3b6894119ad"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const appId = 'meguro-bar-napolitan-production';
+
+        // 1. カウンター機能 (Firestore)
+        async function initCounter() {
+            const counterEl = document.getElementById('visitor-counter');
+            try {
+                await signInAnonymously(auth);
+                onAuthStateChanged(auth, async (user) => {
+                    if (user) {
+                        const counterRef = doc(db, 'artifacts', appId, 'public', 'data', 'visitor_stats', 'global_counter');
+                        const snap = await getDoc(counterRef);
+                        if (!snap.exists()) {
+                            await setDoc(counterRef, { count: 1 }); 
+                        } else {
+                            await updateDoc(counterRef, { count: increment(1) });
+                        }
+                        const updatedSnap = await getDoc(counterRef);
+                        counterEl.textContent = String(updatedSnap.data().count).padStart(6, '0');
+                    }
+                });
+            } catch (err) {
+                console.error('Counter Error:', err);
+            }
+        }
+
+        // 2. microCMS連携
         const SERVICE_DOMAIN = 'barinfo';
         const API_KEY = 'NZ8dVdUenjXm1NdvlsXBKTAEqCoMjnGeXWXb';
 
-        // ニュース取得 (microCMS)
         async function loadNews() {
             const container = document.getElementById('news-injected');
             try {
                 const client = microcms.createClient({ serviceDomain: SERVICE_DOMAIN, apiKey: API_KEY });
-                
-                // 全件取得
                 const res = await client.get({ endpoint: 'news' });
-                
-                if (!res.contents || res.contents.length === 0) {
-                    container.innerHTML = ''; // お知らせがなければ表示しない
-                    return;
-                }
+                if (!res.contents || res.contents.length === 0) return;
 
-                // お知らせがある場合、キリ番の下に注入
                 container.innerHTML = res.contents.map(item => `
                     <div class="news-entry">
                         <span class="news-date">[${new Date(item.publishedAt).toLocaleDateString()}]</span>
-                        <a href="javascript:void(0)" class="link-item ml-2 news-link" data-id="${item.id}">${item.title}</a>
+                        <a href="javascript:void(0)" class="link-item news-link ml-2" data-id="${item.id}">${item.title}</a>
                     </div>
                 `).join('');
 
-                // クリックイベントの登録
                 document.querySelectorAll('.news-link').forEach(link => {
                     link.onclick = () => {
                         const item = res.contents.find(c => c.id === link.dataset.id);
@@ -408,14 +434,14 @@
                     };
                 });
             } catch (err) {
-                console.error('microCMS Load Error:', err);
+                console.error('microCMS Error:', err);
             }
         }
 
         window.openModal = (item) => {
             document.getElementById('modal-title-text').innerText = item.title;
             document.getElementById('modal-date').innerText = '配信日時：' + new Date(item.publishedAt).toLocaleString();
-            document.getElementById('modal-content').innerHTML = item.contents || '<p>本文はありません。</p>';
+            document.getElementById('modal-content').innerHTML = item.contents || '';
             document.getElementById('news-modal').style.display = 'block';
         };
 
@@ -424,10 +450,11 @@
         };
 
         window.onload = () => {
+            initCounter();
             loadNews();
         };
 
-        // フォーム処理
+        // お問合せフォーム
         document.getElementById('contact-form').onsubmit = (e) => {
             e.preventDefault();
             document.getElementById('form-container').style.display = 'none';
