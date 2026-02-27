@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>目黒BARナポリタン (Ver 2.19.6)</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- microCMS SDK -->
     <script src="https://unpkg.com/microcms-js-sdk@latest/dist/umd/microcms-js-sdk.js"></script>
-    <!-- デジタル数字風フォントの読み込み -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <style>
         /* 90年代個人ホームページ風のノスタルジック・デザイン */
@@ -211,7 +209,6 @@
 
     <div class="content-wrapper">
         
-        <!-- ヘッダー -->
         <header class="text-center mb-12">
             <h1 class="text-3xl md:text-5xl font-black italic tracking-tighter mb-4 text-[#E64A19] flex items-center justify-center flex-wrap" style="text-shadow: 2px 2px #AAA;">
                 <span>目黒BAR</span> <img src="images/logo.jpg" alt="Logo" class="title-logo h-[1.2em] md:h-[1.2em]" onerror="this.style.display='none'; this.after('[LOGO]');">
@@ -222,7 +219,6 @@
                 <div class="mt-4 mb-6">
                     <img src="images/main.jpg" alt="Main View" class="mx-auto border-2 border-navy shadow-lg max-w-full h-auto md:max-w-xl" onerror="this.style.display='none'; this.after('[IMAGE: main.jpg]');">
                 </div>
-                <!-- アクセスカウンター -->
                 <p class="mt-4 text-xs md:text-sm font-bold flex items-center justify-center flex-wrap">
                     あなたは 
                     <span class="counter-container">
@@ -234,11 +230,9 @@
                     ★キリ番ゲットで1杯サービス！★
                 </p>
 
-                <!-- お知らせ注入エリア -->
                 <div id="news-injected"></div>
             </div>
             
-            <!-- ナビゲーションメニュー -->
             <nav class="flex flex-wrap justify-center py-2">
                 <a href="#intro" class="nav-link-retro">お店紹介</a>
                 <a href="#price" class="nav-link-retro">料金ｼｽﾃﾑ</a>
@@ -249,7 +243,6 @@
         </header>
 
         <div class="space-y-24">
-            <!-- お店紹介 -->
             <section id="intro">
                 <div class="section-header">お店紹介</div>
                 <div class="md:flex gap-8 items-start">
@@ -267,7 +260,6 @@
                 <a href="#top" class="back-to-top">▲ ページトップへ戻る</a>
             </section>
 
-            <!-- 料金システム -->
             <section id="price">
                 <div class="section-header">料金ｼｽﾃﾑ</div>
                 <div class="md:flex gap-8 items-start">
@@ -275,28 +267,69 @@
                         <img src="images/price.jpg" alt="料金表イメージ" class="w-full border-4 border-double border-navy mb-4 shadow-lg" onerror="this.style.display='none'; this.after('[IMAGE: price.jpg]');">
                     </div>
                     <div class="md:w-1/2 space-y-4">
-                        <div class="bg-white/30 p-6 border border-navy shadow-sm font-bold">
-                            <p class="text-red-600 text-lg mb-4 underline">選べる2つの飲み方</p>
-                            <ul class="text-sm space-y-3 text-navy mb-6">
-                                <li>●ボトルセット：常連様向けのお得なキーププラン</li>
-                                <li>●ショットチャージ：1杯から気軽に楽しめるプラン</li>
-                            </ul>
-                            <hr class="my-6 border-navy/30">
-                            <p class="text-sm mb-2 text-navy">【基本料金】</p>
-                            <table class="w-full text-sm border border-navy bg-white/20 text-navy">
-                                <tr><td class="p-3 border border-navy">チャージ (2時間)</td><td class="p-3 border border-navy text-right">1,500円</td></tr>
-                                <tr><td class="p-3 border border-navy">延長 (1時間毎)</td><td class="p-3 border border-navy text-right">500円</td></tr>
+                        <div class="bg-white/30 p-4 border border-navy shadow-sm font-bold">
+                            
+                            <p class="text-red-600 text-lg mb-2 underline">■ セット料金（飲み放題＆カラオケ歌い放題）</p>
+                            <table class="w-full text-sm border border-navy bg-white/20 text-navy mb-2">
+                                <tr>
+                                    <th class="p-2 border border-navy bg-blue-100/50 text-left w-1/2">1時間</th>
+                                    <td class="p-2 border border-navy text-right text-red-600 text-lg">3,000円</td>
+                                </tr>
+                                <tr>
+                                    <th class="p-2 border border-navy bg-blue-100/50 text-left">以降1時間毎</th>
+                                    <td class="p-2 border border-navy text-right">2,000円</td>
+                                </tr>
                             </table>
-                            <p class="text-[10px] mt-2 text-right text-navy italic">※表示価格はすべて税込みです。</p>
+                            <p class="text-[12px] text-navy mb-6">
+                                【飲み放題メニュー】<br>
+                                金宮 / トリス / 氷結レモン / ソフトドリンク
+                            </p>
+
+                            <p class="text-red-600 text-lg mb-2 underline">■ ＋オプションメニュー</p>
+                            
+                            <p class="text-sm text-navy bg-blue-100/50 p-1 border border-navy border-b-0 mt-2">▼ ボトル（※キープ6か月可）</p>
+                            <table class="w-full text-[11px] md:text-xs border border-navy bg-white/20 text-navy mb-3">
+                                <tr><td class="p-1 border border-navy">茉莉花パック / 二階堂 / 黒霧島</td><td class="p-1 border border-navy text-right w-20">各 6,000円</td></tr>
+                                <tr><td class="p-1 border border-navy">角</td><td class="p-1 border border-navy text-right">8,000円</td></tr>
+                                <tr><td class="p-1 border border-navy">知多</td><td class="p-1 border border-navy text-right">16,000円</td></tr>
+                                <tr><td class="p-1 border border-navy">山崎 / 白州</td><td class="p-1 border border-navy text-right">25,000円</td></tr>
+                                <tr><td class="p-1 border border-navy">山崎12年 / 白州12年</td><td class="p-1 border border-navy text-right">45,000円</td></tr>
+                            </table>
+
+                            <p class="text-sm text-navy bg-blue-100/50 p-1 border border-navy border-b-0">▼ ドリンク</p>
+                            <table class="w-full text-[11px] md:text-xs border border-navy bg-white/20 text-navy mb-3">
+                                <tr><td class="p-1 border border-navy">焼酎各種 / 角 / カクテル各種 他</td><td class="p-1 border border-navy text-right w-20">500円</td></tr>
+                                <tr><td class="p-1 border border-navy">ビール (一番搾り小瓶)</td><td class="p-1 border border-navy text-right">800円</td></tr>
+                                <tr><td class="p-1 border border-navy">ハブ酒 / テキーラ / スタッフドリンク 他</td><td class="p-1 border border-navy text-right">1,000円</td></tr>
+                                <tr><td class="p-1 border border-navy">知多 / 碧 / 山崎 / 白州 他</td><td class="p-1 border border-navy text-right">1,500円～</td></tr>
+                            </table>
+
+                            <p class="text-sm text-navy bg-blue-100/50 p-1 border border-navy border-b-0">▼ ワイン・シャンパン</p>
+                            <table class="w-full text-[11px] md:text-xs border border-navy bg-white/20 text-navy mb-4">
+                                <tr><td class="p-1 border border-navy">ブレッド＆バター (赤/白)</td><td class="p-1 border border-navy text-right w-24">各 12,000円</td></tr>
+                                <tr><td class="p-1 border border-navy">ヴーヴクリコ イエロー</td><td class="p-1 border border-navy text-right">25,000円</td></tr>
+                                <tr><td class="p-1 border border-navy">ペリエジュエ ベルエポック 他</td><td class="p-1 border border-navy text-right">38,000円～</td></tr>
+                            </table>
+
+                            <hr class="my-3 border-navy/50 border-dashed">
+                            
+                            <ul class="text-[10px] text-red-600 leading-tight space-y-1 list-none p-0">
+                                <li>※お支払いはキャッシュレス決済（クレジットカード/PayPay）のみとなります（現金不可）。</li>
+                                <li>※料金は消費税・サービス料込みです。時間延長の場合は自動で延長扱いとなります。</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
                 <a href="#top" class="back-to-top">▲ ページトップへ戻る</a>
             </section>
 
-            <!-- アクセス -->
             <section id="access">
                 <div class="section-header">ｱｸｾｽ・営業時間</div>
+                
+                <div class="mb-4 text-center">
+                    <img src="images/map.jpg" alt="アクセスマップ" class="mx-auto border-4 border-double border-navy shadow-lg max-w-full h-auto" onerror="this.style.display='none'; this.after('[IMAGE: map.jpg]');">
+                </div>
+                
                 <div class="p-6 border-2 border-dashed border-navy font-bold text-center md:text-left text-navy">
                     <p class="text-lg">住所：東京都目黒区下目黒1-5-20 コム・トーヨービル 2F</p>
                     <p class="mt-4">目黒駅西口から徒歩4分</p>
@@ -307,7 +340,6 @@
 
             <hr>
 
-            <!-- リンク集 -->
             <section id="links">
                 <div class="section-header">ﾘﾝｸ集</div>
                 <div class="bg-white/20 p-8 border border-dotted border-navy md:flex justify-between items-start">
@@ -324,7 +356,6 @@
                 <a href="#top" class="back-to-top">▲ ページトップへ戻る</a>
             </section>
 
-            <!-- お問合せ -->
             <section id="contact">
                 <div class="section-header">お問合せ</div>
                 <div class="bg-white/30 border-4 border-double border-navy p-6 md:p-10">
@@ -362,7 +393,6 @@
         </footer>
     </div>
 
-    <!-- ニュース詳細モーダル -->
     <div id="news-modal" style="display: none;">
         <div class="modal-title-bar">
             <div id="modal-date" class="inline-block bg-red-100 text-red-600 text-sm font-bold px-3 py-1 rounded tracking-widest"></div>
