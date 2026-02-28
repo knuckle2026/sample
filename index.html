@@ -1,10 +1,10 @@
-
+```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>目黒BARナポリタン (Ver 2.19.6)</title>
+    <title>★☆ 目黒権之助坂歌謡スナックナポリタン ☆★ (Ver 2.19.8)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/microcms-js-sdk@latest/dist/umd/microcms-js-sdk.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
@@ -139,20 +139,6 @@
             overflow-y: auto;
         }
 
-        /* フォーム部品 */
-        .cgi-input {
-            border: 2px inset #eee;
-            background-color: #fff;
-            padding: 2px 4px;
-        }
-        .form-btn {
-            border: 2px outset #eee;
-            background: #ccc;
-            padding: 2px 15px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
         hr {
             border: none;
             border-top: 2px dashed #000080;
@@ -166,16 +152,6 @@
             height: 1em;
             margin: 0 10px;
             border: 1px solid #000;
-        }
-
-        /* 送信完了メッセージ用 */
-        #form-message {
-            display: none;
-            text-align: center;
-            padding: 20px;
-            border: 4px double #000080;
-            background-color: #FFFFFF;
-            margin-top: 20px;
         }
 
         /* お知らせ注入エリア */
@@ -211,9 +187,10 @@
     <div class="content-wrapper">
         
         <header class="text-center mb-12">
-            <h1 class="text-3xl md:text-5xl font-black italic tracking-tighter mb-4 text-[#E64A19] flex items-center justify-center flex-wrap" style="text-shadow: 2px 2px #AAA;">
-                <span>目黒BAR</span> <img src="images/logo.jpg" alt="Logo" class="title-logo h-[1.2em] md:h-[1.2em]" onerror="this.style.display='none'; this.after('[LOGO]');">
-                <span>ナポリタン</span>
+            <h1 class="text-2xl md:text-4xl font-black italic tracking-tighter mb-4 text-[#E64A19] flex items-center justify-center flex-wrap text-center" style="text-shadow: 2px 2px #AAA;">
+                <span class="w-full mb-2">★☆ 目黒権之助坂</span>
+                <span>歌謡スナック</span> <img src="images/logo.jpg" alt="Logo" class="title-logo h-[1.2em] md:h-[1.2em]" onerror="this.style.display='none'; this.after('[LOGO]');">
+                <span>ナポリタン ☆★</span>
             </h1>
             
             <div class="mb-8 text-center pb-4">
@@ -370,29 +347,13 @@
             <section id="contact">
                 <div class="section-header">お問合せ</div>
                 <div class="bg-white/30 border-4 border-double border-navy p-6 md:p-10">
-                    <div id="form-container">
-                        <form id="contact-form" class="max-w-md mx-auto space-y-4 text-sm font-bold text-navy">
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
-                                <label>お名前：</label>
-                                <input type="text" required class="md:col-span-2 cgi-input w-full">
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
-                                <label>E-Mail：</label>
-                                <input type="email" required class="md:col-span-2 cgi-input w-full">
-                            </div>
-                            <div class="space-y-2">
-                                <label class="block">メッセージ：</label>
-                                <textarea rows="5" required class="cgi-input w-full"></textarea>
-                            </div>
-                            <div class="text-center pt-4 space-x-4">
-                                <button type="submit" class="form-btn"> 送信ボタン </button>
-                                <button type="reset" class="form-btn"> リセット </button>
-                            </div>
-                        </form>
-                    </div>
-                    <div id="form-message">
-                        <p class="text-navy font-bold text-lg mb-4">【送信完了】</p>
-                        <button onclick="location.reload()" class="form-btn">戻る</button>
+                    <div class="text-center font-bold text-navy">
+                        <p class="text-lg md:text-xl mb-4">
+                            電話番号：<a href="tel:0364203445" class="text-red-600 hover:text-red-800 underline text-2xl md:text-3xl">03-6420-3445</a>
+                        </p>
+                        <p class="text-sm md:text-base">
+                            （受付時間：２１:００〜４:００ / 定休日：日曜日）
+                        </p>
                     </div>
                 </div>
                 <a href="#top" class="back-to-top">▲ ページトップへ戻る</a>
@@ -400,7 +361,7 @@
         </div>
 
         <footer class="mt-20 border-t-2 border-navy pt-10 text-center text-[11px] pb-10">
-            <p class="font-bold italic text-gray-400 font-sans">Copyright (C) 2026 BAR Napolitan All Rights Reserved. (Ver 2.19.6)</p>
+            <p class="font-bold italic text-gray-400 font-sans">Copyright (C) 2026 BAR Napolitan All Rights Reserved. (Ver 2.19.8)</p>
         </footer>
     </div>
 
@@ -471,7 +432,7 @@
 
                 container.innerHTML = res.contents.map(item => `
                     <div class="news-entry">
-                        <span class="news-date">[${new Date(item.publishedAt).toLocaleDateString()}]</span>
+                        <span class="news-date">[${new Date(item.date).toLocaleDateString()}]</span>
                         <a href="javascript:void(0)" class="link-item news-link ml-2" data-id="${item.id}">${item.title}</a>
                     </div>
                 `).join('');
@@ -489,7 +450,7 @@
 
         window.openModal = (item) => {
             document.getElementById('modal-title-text').innerText = item.title;
-            document.getElementById('modal-date').innerText = new Date(item.publishedAt).toLocaleDateString();
+            document.getElementById('modal-date').innerText = new Date(item.date).toLocaleDateString();
             document.getElementById('modal-content').innerHTML = item.contents || '';
             document.getElementById('news-modal').style.display = 'block';
         };
@@ -503,12 +464,6 @@
             loadNews();
         };
 
-        // お問合せフォーム
-        document.getElementById('contact-form').onsubmit = (e) => {
-            e.preventDefault();
-            document.getElementById('form-container').style.display = 'none';
-            document.getElementById('form-message').style.display = 'block';
-        };
     </script>
 </body>
 </html>
